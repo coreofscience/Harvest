@@ -1,18 +1,12 @@
-library(bibliometrix)
-library(igraph)
-library(tidyverse)
-library(roadoi) # titles
-library(fulltext) # Abstract
-library(tm)
-library(SnowballC)
-library(wordcloud)
-library(cluster)
-M<- convert2df(D, dbsource="isi",format="plaintext")
-M$ID_WOS <- rownames(M)
 
-M$ID_WOS <- paste(M$ID_WOS,M$VL,sep = ", V")
-M$ID_WOS <- paste(M$ID_WOS,M$PG,sep = ", P")
-M$ID_WOS <- paste(M$ID_WOS,M$DI,sep = ", DOI ")
+
+harvest <- function(seed,correo){
+  D <-readFiles(seed)
+  M<- convert2df(D, dbsource="isi",format="plaintext")
+  M$ID_WOS <- rownames(M)
+  M$ID_WOS <- paste(M$ID_WOS,M$VL,sep = ", V")
+  M$ID_WOS <- paste(M$ID_WOS,M$PG,sep = ", P")
+  M$ID_WOS <- paste(M$ID_WOS,M$DI,sep = ", DOI ")
   enlaces <- data.frame(ID_WOS=character(),
                       CR=character(),
                       stringsAsFactors = FALSE)
@@ -203,16 +197,16 @@ paperCorp_3 <- tm_map(paperCorp_3, stripWhitespace)
 paperCorp_3 <- tm_map(paperCorp_3, stemDocument)
 
 paperCorp_3 <- tm_map(paperCorp_3, removeWords, c("also", "article", "Article", 
-                                               "download", "google", "figure",
-                                               "fig", "groups","Google", "however",
-                                               "high", "human", "levels",
-                                               "larger", "may", "number",
-                                               "shown", "study", "studies", "this",
-                                               "using", "two", "the", "Scholar",
-                                               "pubmedncbi", "PubMedNCBI",
-                                               "view", "View", "the", "biol",
-                                               "via", "image", "doi", "one",
-                                               "brand", "corpor"))
+                                                  "download", "google", "figure",
+                                                  "fig", "groups","Google", "however",
+                                                  "high", "human", "levels",
+                                                  "larger", "may", "number",
+                                                  "shown", "study", "studies", "this",
+                                                  "using", "two", "the", "Scholar",
+                                                  "pubmedncbi", "PubMedNCBI",
+                                                  "view", "View", "the", "biol",
+                                                  "via", "image", "doi", "one",
+                                                  "brand", "corpor"))
 
 nube3 <- wordcloud(paperCorp_3, min.freq = 1,
           max.words=50, random.order=FALSE, rot.per=0.35, 
@@ -220,4 +214,3 @@ nube3 <- wordcloud(paperCorp_3, min.freq = 1,
 
 list(df=M,grafo=grafo_3,nube1=nube1,nube2=nube2,nube3=nube3)
 }
-
