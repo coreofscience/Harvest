@@ -1,3 +1,39 @@
+if (!require(bibliometrix)) {
+  install.packages("bibliometrix")
+}
+
+if (!require(igraph)) {
+  install.packages("igraph")
+}
+
+if (!require(tidyverse)) {
+  install.packages("tidyverse")
+}
+
+if (!require(roadoi)) {
+  install.packages("roadoi")
+}
+
+if (!require(fulltext)) {
+  install.packages("fulltext")
+}
+
+if (!require(tm)) {
+  install.packages("tm")
+}
+
+if (!require(SnowballC)) {
+  install.packages("SnowballC")
+}
+
+if (!require(wordcloud)) {
+  install.packages("wordcloud")
+}
+
+if (!require(cluster)) {
+  install.packages("cluster")
+}
+
 library(bibliometrix)
 library(igraph)
 library(tidyverse)
