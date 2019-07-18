@@ -1,4 +1,12 @@
-
+library(bibliometrix)
+library(igraph)
+library(tidyverse)
+library(roadoi) # titles
+library(fulltext) # Abstract
+library(tm)
+library(SnowballC)
+library(wordcloud)
+library(cluster)
 
 harvest <- function(seed,correo){
   D <-readFiles(seed)
