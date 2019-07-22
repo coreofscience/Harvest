@@ -37,3 +37,6 @@ rsconnect/
 
 # Remove the .txt files
 *.txt
+
+# Remove the .proj files
+*.proj
