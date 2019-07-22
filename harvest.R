@@ -123,17 +123,7 @@ paperCorp <- tm_map(paperCorp, removeWords, stopwords("english"))
 paperCorp <- tm_map(paperCorp, stripWhitespace)
 paperCorp <- tm_map(paperCorp, stemDocument)
 
-paperCorp_1 <- tm_map(paperCorp, removeWords, c("also", "article", "Article", 
-                                               "download", "google", "figure",
-                                               "fig", "groups","Google", "however",
-                                               "high", "human", "levels",
-                                               "larger", "may", "number",
-                                               "shown", "study", "studies", "this",
-                                               "using", "two", "the", "Scholar",
-                                               "pubmedncbi", "PubMedNCBI",
-                                               "view", "View", "the", "biol",
-                                               "via", "image", "doi", "one",
-                                              "brand", "corpor"))
+paperCorp_1 <- tm_map(paperCorp, removeWords, c("the"))
 
 nube1 <- wordcloud(paperCorp_1, min.freq = 1,
           max.words=50, random.order=FALSE, rot.per=0.35, 
@@ -181,17 +171,7 @@ paperCorp_2 <- tm_map(paperCorp_2, removeWords, stopwords("english"))
 paperCorp_2 <- tm_map(paperCorp_2, stripWhitespace)
 paperCorp_2 <- tm_map(paperCorp_2, stemDocument)
 
-paperCorp_2 <- tm_map(paperCorp_2, removeWords, c("also", "article", "Article", 
-                                               "download", "google", "figure",
-                                               "fig", "groups","Google", "however",
-                                               "high", "human", "levels",
-                                               "larger", "may", "number",
-                                               "shown", "study", "studies", "this",
-                                               "using", "two", "the", "Scholar",
-                                               "pubmedncbi", "PubMedNCBI",
-                                               "view", "View", "the", "biol",
-                                               "via", "image", "doi", "one",
-                                               "brand", "corpor"))
+paperCorp_2 <- tm_map(paperCorp_2, removeWords, c("the"))
 
 nube2 <- wordcloud(paperCorp_2, min.freq = 1,
           max.words=50, random.order=FALSE, rot.per=0.35, 
@@ -240,17 +220,7 @@ paperCorp_3 <- tm_map(paperCorp_3, removeWords, stopwords("english"))
 paperCorp_3 <- tm_map(paperCorp_3, stripWhitespace)
 paperCorp_3 <- tm_map(paperCorp_3, stemDocument)
 
-paperCorp_3 <- tm_map(paperCorp_3, removeWords, c("also", "article", "Article", 
-                                                  "download", "google", "figure",
-                                                  "fig", "groups","Google", "however",
-                                                  "high", "human", "levels",
-                                                  "larger", "may", "number",
-                                                  "shown", "study", "studies", "this",
-                                                  "using", "two", "the", "Scholar",
-                                                  "pubmedncbi", "PubMedNCBI",
-                                                  "view", "View", "the", "biol",
-                                                  "via", "image", "doi", "one",
-                                                  "brand", "corpor"))
+paperCorp_3 <- tm_map(paperCorp_3, removeWords, c("the"))
 
 nube3 <- wordcloud(paperCorp_3, min.freq = 1,
           max.words=50, random.order=FALSE, rot.per=0.35, 
