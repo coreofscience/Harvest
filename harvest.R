@@ -44,7 +44,7 @@ library(SnowballC)
 library(wordcloud)
 library(cluster)
 
-harvest <- function(seed,correo){
+harvest <- function(seed,email){
   D <-readFiles(seed)
   M<- convert2df(D, dbsource="isi",format="plaintext")
   M$ID_WOS <- rownames(M)
@@ -101,7 +101,7 @@ df <- data.frame(titulo = as.character(),
                  stringsAsFactors = FALSE)
 for (i in raw_data_1$doi) {
   row = try(oadoi_fetch(dois = i,
-                   email = correo),
+                   email = email),
             TRUE)
   if(isTRUE(class(row)=="try-error")) {next} else {
     df_new = data.frame(titulo = row$title, 
@@ -159,7 +159,7 @@ df_2 <- data.frame(titulo = as.character(),
                  stringsAsFactors = FALSE)
 for (i in raw_data_1_2$doi) {
   row = try(oadoi_fetch(dois = i,
-                   email = correo),
+                   email = email),
             TRUE)
   if(isTRUE(class(row)=="try-error")) {next} else {
     df_new = data.frame(titulo = row$title, 
@@ -217,7 +217,7 @@ df_3 <- data.frame(titulo = as.character(),
                  stringsAsFactors = FALSE)
 for (i in raw_data_1_3$doi) {
   row = try(oadoi_fetch(dois = i,
-                   email = correo),
+                   email = email),
             TRUE)
   if(isTRUE(class(row)=="try-error")) {next} else {
     df_new = data.frame(titulo = row$title, 
