@@ -44,7 +44,7 @@ library(SnowballC)
 library(wordcloud)
 library(cluster)
 
-harvest <- function(seed,correo){
+harvest <- function(seed,email){
   D <-readFiles(seed)
   M<- convert2df(D, dbsource="isi",format="plaintext")
   M$ID_WOS <- rownames(M)
@@ -101,7 +101,7 @@ df <- data.frame(titulo = as.character(),
                  stringsAsFactors = FALSE)
 for (i in raw_data_1$doi) {
   row = try(oadoi_fetch(dois = i,
-                   email = correo),
+                   email = email),
             TRUE)
   if(isTRUE(class(row)=="try-error")) {next} else {
     df_new = data.frame(titulo = row$title, 
@@ -123,17 +123,7 @@ paperCorp <- tm_map(paperCorp, removeWords, stopwords("english"))
 paperCorp <- tm_map(paperCorp, stripWhitespace)
 paperCorp <- tm_map(paperCorp, stemDocument)
 
-paperCorp_1 <- tm_map(paperCorp, removeWords, c("also", "article", "Article", 
-                                               "download", "google", "figure",
-                                               "fig", "groups","Google", "however",
-                                               "high", "human", "levels",
-                                               "larger", "may", "number",
-                                               "shown", "study", "studies", "this",
-                                               "using", "two", "the", "Scholar",
-                                               "pubmedncbi", "PubMedNCBI",
-                                               "view", "View", "the", "biol",
-                                               "via", "image", "doi", "one",
-                                              "brand", "corpor"))
+paperCorp_1 <- tm_map(paperCorp, removeWords, c("the"))
 
 nube1 <- wordcloud(paperCorp_1, min.freq = 1,
           max.words=50, random.order=FALSE, rot.per=0.35, 
@@ -159,7 +149,7 @@ df_2 <- data.frame(titulo = as.character(),
                  stringsAsFactors = FALSE)
 for (i in raw_data_1_2$doi) {
   row = try(oadoi_fetch(dois = i,
-                   email = correo),
+                   email = email),
             TRUE)
   if(isTRUE(class(row)=="try-error")) {next} else {
     df_new = data.frame(titulo = row$title, 
@@ -181,17 +171,7 @@ paperCorp_2 <- tm_map(paperCorp_2, removeWords, stopwords("english"))
 paperCorp_2 <- tm_map(paperCorp_2, stripWhitespace)
 paperCorp_2 <- tm_map(paperCorp_2, stemDocument)
 
-paperCorp_2 <- tm_map(paperCorp_2, removeWords, c("also", "article", "Article", 
-                                               "download", "google", "figure",
-                                               "fig", "groups","Google", "however",
-                                               "high", "human", "levels",
-                                               "larger", "may", "number",
-                                               "shown", "study", "studies", "this",
-                                               "using", "two", "the", "Scholar",
-                                               "pubmedncbi", "PubMedNCBI",
-                                               "view", "View", "the", "biol",
-                                               "via", "image", "doi", "one",
-                                               "brand", "corpor"))
+paperCorp_2 <- tm_map(paperCorp_2, removeWords, c("the"))
 
 nube2 <- wordcloud(paperCorp_2, min.freq = 1,
           max.words=50, random.order=FALSE, rot.per=0.35, 
@@ -217,7 +197,7 @@ df_3 <- data.frame(titulo = as.character(),
                  stringsAsFactors = FALSE)
 for (i in raw_data_1_3$doi) {
   row = try(oadoi_fetch(dois = i,
-                   email = correo),
+                   email = email),
             TRUE)
   if(isTRUE(class(row)=="try-error")) {next} else {
     df_new = data.frame(titulo = row$title, 
@@ -240,21 +220,17 @@ paperCorp_3 <- tm_map(paperCorp_3, removeWords, stopwords("english"))
 paperCorp_3 <- tm_map(paperCorp_3, stripWhitespace)
 paperCorp_3 <- tm_map(paperCorp_3, stemDocument)
 
-paperCorp_3 <- tm_map(paperCorp_3, removeWords, c("also", "article", "Article", 
-                                                  "download", "google", "figure",
-                                                  "fig", "groups","Google", "however",
-                                                  "high", "human", "levels",
-                                                  "larger", "may", "number",
-                                                  "shown", "study", "studies", "this",
-                                                  "using", "two", "the", "Scholar",
-                                                  "pubmedncbi", "PubMedNCBI",
-                                                  "view", "View", "the", "biol",
-                                                  "via", "image", "doi", "one",
-                                                  "brand", "corpor"))
+paperCorp_3 <- tm_map(paperCorp_3, removeWords, c("the"))
 
 nube3 <- wordcloud(paperCorp_3, min.freq = 1,
           max.words=50, random.order=FALSE, rot.per=0.35, 
           colors=brewer.pal(8, "Dark2"))
 
-list(df=M,grafo=grafo_3,nube1=nube1,nube2=nube2,nube3=nube3)
+list(df=M,grafo=grafo_3,
+     cluster_1=paperCorp_1,
+     cluster_2 = paperCorp_2, 
+     cluster_3 =paperCorp_3)
 }
+
+
+source("cluster.R")
