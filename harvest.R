@@ -226,5 +226,11 @@ nube3 <- wordcloud(paperCorp_3, min.freq = 1,
           max.words=50, random.order=FALSE, rot.per=0.35, 
           colors=brewer.pal(8, "Dark2"))
 
-list(df=M,grafo=grafo_3,nube1=nube1,nube2=nube2,nube3=nube3)
+list(df=M,grafo=grafo_3,
+     cluster_1=paperCorp_1,
+     cluster_2 = paperCorp_2, 
+     cluster_3 =paperCorp_3)
 }
+
+
+source("cluster.R")
