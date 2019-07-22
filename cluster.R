@@ -1,5 +1,11 @@
 cluster <- function(file, stopwords) {
-  wordcloud(paperCorp_3, min.freq = 1,
+  
+  paperCorp_3 <- tm_map(file, 
+                        removeWords, 
+                        stopwords)
+  
+  wordcloud(paperCorp_3, 
+            min.freq = 1,
             max.words=50, 
             random.order=FALSE, 
             rot.per=0.35, 
